@@ -1,0 +1,7 @@
+﻿  Gaming.cpp
+C:\Users\RCO8\source\repos\My-SDL2-librery\SDL_Samples\UI.h(172): warning C4091: 'static ': 변수를 선언하지 않으면 'Scroll::Type' 왼쪽은 무시됩니다.
+C:\Users\RCO8\source\repos\My-SDL2-librery\SDL_Samples\Gaming.cpp(104,15): warning C4060: switch문에 'case' 또는 'default' 레이블이 없습니다.
+  main.cpp
+C:\Users\RCO8\source\repos\My-SDL2-librery\SDL_Samples\UI.h(172): warning C4091: 'static ': 변수를 선언하지 않으면 'Scroll::Type' 왼쪽은 무시됩니다.
+  코드를 생성하고 있습니다...
+  SDL_Samples.vcxproj -> C:\Users\RCO8\Source\Repos\My-SDL2-librery\Debug\SDL_Samples.exe
