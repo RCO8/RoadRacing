@@ -29,6 +29,11 @@ public:
 	void SetPos(int x)
 	{
 		posX += x;
+		//화면 밖으로 나가지 않게
+		if (posX < 0)	
+			posX = 0;
+		else if (posX > 480 - carSpr->GetClipWidth())
+			posX = 480 - carSpr->GetClipWidth();
 	}
 
 	void SetIndex(int idx)

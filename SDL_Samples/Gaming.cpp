@@ -151,14 +151,24 @@ void Gaming::UpdateData()
     //만약에 이벤트에 적용을 하지 않는다면
     //mTimer.StartCount();
     //SDL_Log("%d", gPad->GetLeftAxis(0));
-    if (gPad != NULL) mCar->SetIndex(gPad->GetLeftAxis().deadx);
+    if (gPad != NULL)
+    {
+        mCar->SetIndex(gPad->GetLeftAxis().deadx);
+        mCar->SetPos(gPad->GetLeftAxis().deadx);
+    }
+
     SDL_Delay(100);
 }
 void Gaming::DrawScreen()   //Drawing Sprite or UI in this Screen
 {
     SDL_SetRenderDrawColor(renderer, 0x2e, 0xab, 0xff, 255);
-    SDL_RenderClear(renderer);  //Screen Clear   //Fill Color in Screen
-    
+    SDL_RenderClear(renderer);  //Screen Clear 
+
+    //Draw Field
+    SDL_SetRenderDrawColor(renderer, 0x00, 0xab, 0x00, 255);
+    SDL_Rect field = { 0,windowHeight - 100,windowWidth,100 };
+    SDL_RenderFillRect(renderer, &field);
+
     //Draw Image
     mCar->DrawCar();
     //Draw UI
