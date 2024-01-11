@@ -16,7 +16,7 @@ private:
 public:
 	Route(SDL_Renderer* renderer)
 	{
-		routes = new Sprite(renderer, "route.png");
+		//routes = new Sprite(renderer, "route.png");
 		routeDigit = 0;
 		nowRoute = 1;
 		srand(time(NULL));
