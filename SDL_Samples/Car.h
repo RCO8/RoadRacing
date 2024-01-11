@@ -11,6 +11,8 @@ private:
 
 	int posX = 0, posY = 0;
 	bool reverse = false;
+
+	SDL_Rect routeCollider;	//포장도로 범위를 벗어났는지
 public:
 	Car(SDL_Renderer* renderer)
 	{
@@ -24,6 +26,8 @@ public:
 
 		posX = 320 - carSpr->GetClipWidth() / 2;
 		posY = 480 - carSpr->GetClipHeight();
+
+		routeCollider = { posX,posY,carSpr->GetClipWidth(), carSpr->GetClipHeight() };
 	}
 
 	void SetPos(int x)
@@ -34,6 +38,8 @@ public:
 			posX = 0;
 		else if (posX > 480 - carSpr->GetClipWidth())
 			posX = 480 - carSpr->GetClipWidth();
+
+		//포장도로에서 벗어났으면
 	}
 
 	void SetIndex(int idx)
@@ -43,10 +49,7 @@ public:
 		carSpr->SetSpriteClip(showClip[clipIdx]);
 	}
 
-	void DrawCar() const
-	{
-		carSpr->Drawing(posX, posY, 0, reverse);
-	}
+	void DrawCar() const { carSpr->Drawing(posX, posY, 0, reverse); }
 private:
 	void InitClips()
 	{

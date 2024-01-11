@@ -170,6 +170,7 @@ void Gaming::DrawScreen()   //Drawing Sprite or UI in this Screen
     SDL_RenderFillRect(renderer, &field);
 
     //Draw Image
+    route->ShowRoute();
     mCar->DrawCar();
     //Draw UI
 

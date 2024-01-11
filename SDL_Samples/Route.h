@@ -16,7 +16,9 @@ private:
 public:
 	Route(SDL_Renderer* renderer)
 	{
-		//routes = new Sprite(renderer, "route.png");
+		routes = new Sprite(renderer, "route.png");
+		routes->SetColorHide(0xff, 0xff, 0xff);
+
 		routeDigit = 0;
 		nowRoute = 1;
 		srand(time(NULL));
@@ -31,6 +33,7 @@ public:
 	{
 		routeType.pop_front();
 		//도로 그리기
+		routes->Drawing(270, 380, 0);
 		setRandomCurve();
 		routeType.push_back(nowRoute);
 		routeDigit++;
