@@ -24,6 +24,7 @@ bool Gaming::GameInit()
     //Resouce Setting
     gPad = new GamePad(0);
     mCar = new Car(renderer);
+    route = new Route();
     return true;
 }
 

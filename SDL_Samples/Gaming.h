@@ -9,6 +9,7 @@
 #include "Sound.h"
 #include "Graphic.h"
 #include "Car.h"
+#include "Route.h"
 
 using std::thread;
 
@@ -22,6 +23,7 @@ private:
 
     GamePad* gPad;
     Car* mCar;
+    Route* route;
 public:
     bool GameInit();    //게임 시작시 기본사항 정의
     void GameRun();     //게임 진행중
