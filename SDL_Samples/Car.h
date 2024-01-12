@@ -13,6 +13,7 @@ private:
 	bool reverse = false;
 
 	SDL_Rect routeCollider;	//포장도로 범위를 벗어났는지
+	bool collide;	//충돌검사
 public:
 	Car(SDL_Renderer* renderer)
 	{
@@ -28,6 +29,7 @@ public:
 		posY = 480 - carSpr->GetClipHeight();
 
 		routeCollider = { posX,posY,carSpr->GetClipWidth(), carSpr->GetClipHeight() };
+		collide = true;
 	}
 
 	void SetPos(int x)
@@ -41,6 +43,8 @@ public:
 
 		//포장도로에서 벗어났으면
 	}
+
+	bool GetCollide() { return collide; }
 
 	void SetIndex(int idx)
 	{
@@ -56,5 +60,10 @@ private:
 		showClip.push_back({ 8,8,21,48 });
 		showClip.push_back({ 39,8,24,48 });
 		showClip.push_back({ 72,8,29,48 }); 
+	}
+	void CheckCollide()
+	{
+		//if(car.x < route.x || car.x+w > route.x+w)
+			//범위 벗어남
 	}
 };
