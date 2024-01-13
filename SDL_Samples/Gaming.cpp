@@ -157,6 +157,11 @@ void Gaming::UpdateData()
         mCar->SetPos(gPad->GetLeftAxis().deadx);
     }
 
+    //자동차가 도로를 벗어나면
+    if (mCar->CheckCollide(*route))
+    {
+        SDL_Log("벗어남");
+    }
     SDL_Delay(100);
 }
 void Gaming::DrawScreen()   //Drawing Sprite or UI in this Screen

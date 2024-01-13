@@ -32,20 +32,6 @@ public:
 		collide = true;
 	}
 
-	void SetPos(int x)
-	{
-		posX += x;
-		//화면 밖으로 나가지 않게
-		if (posX < 0)	
-			posX = 0;
-		else if (posX > 480 - carSpr->GetClipWidth())
-			posX = 480 - carSpr->GetClipWidth();
-
-		//포장도로에서 벗어났으면
-	}
-
-	bool GetCollide() { return collide; }
-
 	void SetIndex(int idx)
 	{
 		reverse = idx < 0 ? true : false;	//반전 설정
@@ -53,17 +39,33 @@ public:
 		carSpr->SetSpriteClip(showClip[clipIdx]);
 	}
 
+	void SetPos(int x)
+	{
+		//화면 밖으로 나가지 않게
+		if(posX >= 0 && posX <= 640)
+			posX += x;
+
+		//충돌범위 재설정
+		routeCollider.x = posX;
+		routeCollider.w = carSpr->GetClipWidth();
+	}
+
 	void DrawCar() const { carSpr->Drawing(posX, posY, 0, reverse); }
+
+	bool CheckCollide(Route& r)
+	{
+		//충돌판정이 도로 안에 있으면
+		if (r.GetRouteArea().x < routeCollider.x &&
+			r.GetRouteArea().x + r.GetRouteArea().w > routeCollider.x + routeCollider.w)
+			return false;
+		else
+			return true;
+	}
 private:
 	void InitClips()
 	{
 		showClip.push_back({ 8,8,21,48 });
 		showClip.push_back({ 39,8,24,48 });
 		showClip.push_back({ 72,8,29,48 }); 
-	}
-	void CheckCollide()
-	{
-		//if(car.x < route.x || car.x+w > route.x+w)
-			//범위 벗어남
 	}
 };

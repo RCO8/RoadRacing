@@ -8,7 +8,6 @@ using namespace std;
 class Route
 {
 private:
-	SDL_Renderer* renderer;
 	Sprite* routes;
 	deque<int> routeType;	//직선이나 커브를 판정하기 위한
 	int nowRoute;	//현재 오는 길
@@ -44,6 +43,11 @@ public:
 		setRandomCurve();
 		routeType.push_back(nowRoute);
 		routeDigit++;
+	}
+
+	SDL_Rect GetRouteArea()
+	{
+		return RouteCollide;
 	}
 private:
 	void setRandomCurve()
