@@ -8,6 +8,7 @@ using namespace std;
 class Route
 {
 private:
+	SDL_Renderer* rend;
 	Sprite* routes;
 	deque<int> routeType;	//직선이나 커브를 판정하기 위한
 	int nowRoute;	//현재 오는 길
@@ -18,6 +19,7 @@ private:
 public:
 	Route(SDL_Renderer* renderer)
 	{
+		rend = renderer;
 		routes = new Sprite(renderer, "route.png");
 		routes->SetColorHide(0xff, 0xff, 0xff);
 
@@ -37,11 +39,9 @@ public:
 
 	void ShowRoute()	//화면에 도로 표시
 	{
-		routeType.pop_front();
 		//도로 그리기
-		routes->Drawing(270, 380, 0);
-		setRandomCurve();
-		routeType.push_back(nowRoute);
+		routes->Drawing(posX, posY, 0);
+		setRandomCurve(); 
 		routeDigit++;
 	}
 
@@ -52,14 +52,25 @@ public:
 private:
 	void setRandomCurve()
 	{
-		if (routeDigit > 5)
+		SDL_Log("Digit : %d", routeDigit);
+		if (routeDigit > 20)
 		{
+			routeType.pop_front();
 			routeDigit = 0;
 			nowRoute = rand() % 3;
+			routeType.push_back(nowRoute);
 		}
-	}
-	void DrawRoute()
-	{
-		//어디로 꺽어질지 여기로 표현
+		switch (nowRoute)
+		{
+		case 1:	//좌회
+			posX--;
+			break;
+		case 2:	//우회
+			posX++;
+			break;
+		default:
+			posX += 0;
+			break;
+		}
 	}
 };
