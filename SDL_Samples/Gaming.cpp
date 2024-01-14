@@ -162,6 +162,9 @@ void Gaming::UpdateData()
     {
         SDL_Log("π˛æÓ≥≤");
     }
+
+    int getAccel = mCar->SetAccel(0);
+    //ø¢ºø¿ª π‚¿ª ∂ß º”µµ∞° ø√∂Û∞® ¡Ô delay∞° ∞®º“
     SDL_Delay(100);
 }
 void Gaming::DrawScreen()   //Drawing Sprite or UI in this Screen

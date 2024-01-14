@@ -52,6 +52,14 @@ public:
 
 	void DrawCar() const { carSpr->Drawing(posX, posY, 0, reverse); }
 
+	int SetAccel(Sint16 getAxis)
+	{
+		//입력이 0이면
+		if (getAxis == 0)
+			return 0;
+		return getAxis;
+	}
+
 	bool CheckCollide(Route& r)
 	{
 		//충돌판정이 도로 안에 있으면

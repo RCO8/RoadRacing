@@ -14,6 +14,8 @@ private:
 	int nowRoute;	//현재 오는 길
 	int routeDigit;	//도로 간격 (간격 : 5)
 	
+	int delayType;	//도로형태가 바뀔 때 변경될 대기시간
+
 	int posX, posY;
 	SDL_Rect RouteCollide;
 public:
@@ -35,6 +37,8 @@ public:
 		posX = 270;
 		posY = 380;
 		RouteCollide = { posX,posY,100,100 };
+
+		delayType = 60;
 	}
 
 	void ShowRoute()	//화면에 도로 표시
@@ -53,24 +57,33 @@ private:
 	void setRandomCurve()
 	{
 		SDL_Log("Digit : %d", routeDigit);
-		if (routeDigit > 20)
+		if (routeDigit > delayType)
 		{
 			routeType.pop_front();
 			routeDigit = 0;
 			nowRoute = rand() % 3;
 			routeType.push_back(nowRoute);
 		}
+		int moveSpd = 2;
 		switch (nowRoute)
 		{
 		case 1:	//좌회
-			posX--;
+			if(posX > 0)
+				posX -= moveSpd;
+			delayType = 20;
 			break;
 		case 2:	//우회
-			posX++;
+			if(posX < 540)
+				posX += moveSpd;
+			delayType = 20;
 			break;
 		default:
 			posX += 0;
+			delayType = 60;
 			break;
 		}
+
+		RouteCollide.x = posX;
+		RouteCollide.w = 100;
 	}
 };
