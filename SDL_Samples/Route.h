@@ -41,11 +41,12 @@ public:
 		delayType = 60;
 	}
 
-	void ShowRoute(bool isStart)	//화면에 도로 표시
+	void ShowRoute(bool isStart, double going)	//화면에 도로 표시
 	{
+		//going : 엑셀을 밟을 때 도로가 움직여지는 속도나 상태
 		//도로 그리기
 		routes->Drawing(posX, posY, 0);
-		if (isStart)	//게임이 시작되면 도로를 움직여라
+		if (isStart && going > 0)	//게임이 시작되면 도로를 움직여라
 		{
 			setRandomCurve();
 			routeDigit++;

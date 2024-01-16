@@ -28,6 +28,7 @@ private:
 
     bool gameStart = false;
     double kilometer = 0.0;
+    double getAccel = 0.0;
 public:
     bool GameInit();    //게임 시작시 기본사항 정의
     void GameRun();     //게임 진행중

@@ -153,8 +153,13 @@ void Gaming::UpdateData()
     //SDL_Log("%d", gPad->GetLeftAxis(0));
     if (gPad != NULL)
     {
-        mCar->SetIndex(gPad->GetLeftAxis().deadx);
-        mCar->SetPos(gPad->GetLeftAxis().deadx);
+        if (getAccel > 0)
+        {
+            mCar->SetIndex(gPad->GetLeftAxis().deadx);
+            mCar->SetPos(gPad->GetLeftAxis().deadx);
+        }
+        else
+            mCar->SetIndex(0);
     }
 
     //자동차가 도로를 벗어나면
@@ -163,7 +168,7 @@ void Gaming::UpdateData()
         //SDL_Log("벗어남");
     }
 
-    double getAccel = mCar->SetAccel(gPad->GetTriggerAxis().r);
+    getAccel = mCar->SetAccel(gPad->GetTriggerAxis().r);
 
     //엑셀을 밟을 때 속도가 올라감 즉 delay가 감소
 
@@ -181,7 +186,7 @@ void Gaming::DrawScreen()   //Drawing Sprite or UI in this Screen
     SDL_RenderFillRect(renderer, &field);
 
     //Draw Image
-    route->ShowRoute(true);
+    route->ShowRoute(true, getAccel);
     mCar->DrawCar();
     //Draw UI
 
