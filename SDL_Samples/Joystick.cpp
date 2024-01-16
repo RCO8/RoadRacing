@@ -210,7 +210,7 @@ void GamePad::CheckGamepadEvent(SDL_Event event)
 			case SDL_CONTROLLER_AXIS_TRIGGERRIGHT:	//SDL_Log("Right Trigger : %d", event.caxis.value);
 				PadTrigger.r = event.caxis.value;
 				PadTrigger.deadr = event.caxis.value > triggerDead ? true : false;
-				SDL_Log("¿¢¼¿");
+				//SDL_Log("¿¢¼¿");
 				break;
 
 				//extend device

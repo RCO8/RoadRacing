@@ -41,12 +41,15 @@ public:
 		delayType = 60;
 	}
 
-	void ShowRoute()	//화면에 도로 표시
+	void ShowRoute(bool isStart)	//화면에 도로 표시
 	{
 		//도로 그리기
 		routes->Drawing(posX, posY, 0);
-		setRandomCurve(); 
-		routeDigit++;
+		if (isStart)	//게임이 시작되면 도로를 움직여라
+		{
+			setRandomCurve();
+			routeDigit++;
+		}
 	}
 
 	SDL_Rect GetRouteArea()
@@ -56,7 +59,7 @@ public:
 private:
 	void setRandomCurve()
 	{
-		SDL_Log("Digit : %d", routeDigit);
+		//SDL_Log("Digit : %d", routeDigit);
 		if (routeDigit > delayType)
 		{
 			routeType.pop_front();

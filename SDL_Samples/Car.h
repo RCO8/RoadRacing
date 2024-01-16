@@ -52,12 +52,9 @@ public:
 
 	void DrawCar() const { carSpr->Drawing(posX, posY, 0, reverse); }
 
-	int SetAccel(Sint16 getAxis)
+	double SetAccel(double getAxis)
 	{
-		//입력이 0이면
-		if (getAxis == 0)
-			return 0;
-		return getAxis;
+		return getAxis / 32767;
 	}
 
 	bool CheckCollide(Route& r)
